@@ -6,12 +6,51 @@ As an example we will be implementing function getting a list and returning its 
 
 ## Recursion
 
+Lets start with Python/Java/C++/... approach:
+
+```haskell
+len lst = if lst == []
+            then 0
+            else 1 + len (tail lst)
+```
+
 Lets try defining function length (`len`) using recursion:
 
 ```haskell
 len [] = 0
 len (x:xs) = 1 + len xs
 ```
+
+Alternatively using guards:
+
+```haskell
+len lst
+  | lst == [] = 0
+  | otherwise = 1 + (len (tail lst))
+```
+
+Lets do nothing and improve out code further.
+Use Function application with `$`.
+Read more about the `$` operator [here](http://learnyouahaskell.com/higher-order-functions)
+
+__It is The Art of Doing NOTHING__:
+
+```haskell
+len lst
+  | lst == [] = 0
+  | otherwise = 1 + (len $ tail lst)
+```
+
+Or lets use Haskell `where`:
+
+```haskell
+len lst
+  | lst == [] = 0
+  | otherwise = 1 + tail_len
+      where
+        tail_len = len $ tail lst
+```
+
 
 Lets now try this code:
 
